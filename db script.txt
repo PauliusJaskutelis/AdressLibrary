@@ -1,0 +1,74 @@
+/*
+CREATE TABLE adresai (
+	id int IDENTITY(1,1) PRIMARY KEY,
+	pilnas_vardas varchar(250),
+	telefono_numeris varchar(12) NOT NULL,
+	gimimo_data DATE
+);
+*/
+
+/*
+INSERT INTO adresai (pilnas_vardas, telefono_numeris, gimimo_data)
+	VALUES ('Paulius Jaskutelisasdasdasd', '+37065107556', '2003-06-16')
+	*/
+
+/*
+USE [addressDatabase]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[GetAddressList]
+AS
+BEGIN
+	SELECT * FROM adresai
+END
+
+USE [addressDatabase]
+EXECUTE GetAddressList
+*/
+
+/*
+USE [addressDatabase]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[AddContact]
+@name varchar(250),
+@number varchar(12),
+@birthDate DATE
+AS
+BEGIN
+	INSERT INTO adresai (pilnas_vardas, telefono_numeris, gimimo_data)
+	VALUES (@name, @number, @birthDate)
+END
+
+USE [addressDatabase]
+EXECUTE AddContact @name = 'pal', @number = '678461', @birthDate = '2002-12-06';
+*/
+
+USE [addressDatabase]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[UpdateContact]
+@id int,
+@name varchar(250),
+@number varchar(12),
+@birthDate DATE
+AS
+BEGIN
+	UPDATE adresai
+	SET pilnas_vardas = @name,
+		telefono_numeris = @number,
+		gimimo_data = @birthDate
+	WHERE id = @id
+END
