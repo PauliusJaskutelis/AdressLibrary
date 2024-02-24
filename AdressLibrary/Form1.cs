@@ -86,16 +86,16 @@ namespace AdressLibrary
 
         private void deleteContact_Click(object sender, EventArgs e)
         {
-            if (contactDataGridView.Rows[0].Cells[0].Selected)
-            {
-                errorDialog.setLabels("Selection error", "No contact was selected. \n Please select a contact to delete it.");
-                errorDialog.ShowDialog();
-                
-            }
-            else
+            if (contactDataGridView.SelectedRows != null)
             {
                 deleteContact();
                 dataGrid_Load();
+
+            }
+            else
+            {
+                errorDialog.setLabels("Selection error", "No contact was selected. \n Please select a contact to delete it.");
+                errorDialog.ShowDialog();
             }
         }
 
