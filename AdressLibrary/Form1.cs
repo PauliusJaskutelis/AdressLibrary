@@ -56,7 +56,7 @@ namespace AdressLibrary
         {
             editForm = new AddEditForm();
 
-            if (contactDataGridView.SelectedRows != null)
+            if (contactDataGridView.SelectedRows != null && !isDataGridEmpty())
             {
                 editForm.setNameText(contactDataGridView.SelectedRows[0].Cells[1].Value.ToString());
                 editForm.setNumberText(contactDataGridView.SelectedRows[0].Cells[2].Value.ToString());
@@ -86,7 +86,7 @@ namespace AdressLibrary
 
         private void deleteContact_Click(object sender, EventArgs e)
         {
-            if (contactDataGridView.SelectedRows != null)
+            if (contactDataGridView.SelectedRows != null && !isDataGridEmpty())
             {
                 deleteContact();
                 dataGrid_Load();
@@ -168,6 +168,10 @@ namespace AdressLibrary
 
             contactDataGridView.Columns[1].Width = 170;
             contactDataGridView.Columns[2].Width = 80;
+        }
+        public bool isDataGridEmpty()
+        {
+            return contactDataGridView.Rows.Count == 0;
         }
     }
 }
